@@ -281,6 +281,7 @@ void Parser::Setup(bool Compile)
     if (opts->targetTriple.empty())
         opts->targetTriple = llvm::sys::getDefaultTargetTriple();
     TO->Triple = llvm::Triple::normalize(opts->targetTriple);
+    TO->FeatureMap["neon"] = true;
 
     if (opts->verbose)
         printf("Target triple: %s\n", TO->Triple.c_str());
