@@ -138,6 +138,11 @@ namespace CppSharp.Passes
                 template.Specializations.All(s => s.Ignore))
                 template.ExplicitlyIgnore();
 
+            if (template.Name== "__tree_node_base")
+            {
+                return;
+            }
+
             if (template.Specializations.Any() &&
                 (template.HasDependentValueFieldInLayout() ||
                  template.Classes.Any(c => c.HasDependentValueFieldInLayout())))
