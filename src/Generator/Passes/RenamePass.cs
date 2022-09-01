@@ -5,7 +5,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using CppSharp.AST;
 using CppSharp.AST.Extensions;
-using CppSharp.Generators.CSharp;
 
 namespace CppSharp.Passes
 {
@@ -425,7 +424,7 @@ namespace CppSharp.Passes
                     break;
             }
 
-            return CSharpSources.SafeIdentifier(sb.ToString());
+            return sb.ToString();
         }
 
         private static void RemoveUnderscores(StringBuilder sb)
