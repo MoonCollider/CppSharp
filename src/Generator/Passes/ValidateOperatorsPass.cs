@@ -55,7 +55,6 @@ namespace CppSharp.Passes
                 // The conversion operators can be overloaded
                 case CXXOperatorKind.Conversion:
                 case CXXOperatorKind.ExplicitConversion:
-                    return true;
 
                 // Copy assignment operator is used internally
                 case CXXOperatorKind.Equal:
