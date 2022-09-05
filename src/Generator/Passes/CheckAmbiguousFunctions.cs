@@ -90,6 +90,7 @@ namespace CppSharp.Passes
 
                         functionPointee.TryGetClass(out Class @functionPointeeClass);
                         overloadPointee.TryGetClass(out Class @overloadPointeeClass);
+                        
                         if (functionPointeeClass == function.Namespace && @overloadPointeeClass == overload.Namespace)
                         {
                             if (functionParamPointerType.Modifier == PointerType.TypeModifier.RVReference &&
