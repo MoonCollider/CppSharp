@@ -1582,3 +1582,16 @@ struct DLL_API CallByValueInterface {
 void DLL_API CallCallByValueInterfaceValue(CallByValueInterface*);
 void DLL_API CallCallByValueInterfaceReference(CallByValueInterface*);
 void DLL_API CallCallByValueInterfacePointer(CallByValueInterface*);
+
+struct DLL_API Issue1451 {
+    int a;
+    static int constructorCalls;
+    static int destructorCalls;
+    static int copyConstructorCalls;
+
+    Issue1451();
+    ~Issue1451();
+    Issue1451(const Issue1451& other);
+};
+
+bool DLL_API TestObjectPassByValue(Issue1451 s);

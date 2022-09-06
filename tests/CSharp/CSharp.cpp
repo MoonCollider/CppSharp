@@ -1750,3 +1750,30 @@ void CallCallByValueInterfacePointer(CallByValueInterface* interface)
     RuleOfThreeTester value;
     interface->CallByPointer(&value);
 }
+
+int Issue1451::constructorCalls = 0;
+int Issue1451::destructorCalls = 0;
+int Issue1451::copyConstructorCalls = 0;
+
+Issue1451::Issue1451()
+{
+    a = 0;
+    constructorCalls++;
+}
+
+Issue1451::Issue1451(const Issue1451& other)
+{
+    a = other.a;
+    copyConstructorCalls++;
+}
+
+Issue1451::~Issue1451()
+{
+    destructorCalls++;
+}
+
+bool TestObjectPassByValue(Issue1451 s)
+{
+    s.a = 99999;
+    return true;
+}
