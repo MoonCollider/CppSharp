@@ -1526,3 +1526,29 @@ DLL_API const char* TestCSharpString(const char* in, CS_OUT const char** out);
 DLL_API const wchar_t* TestCSharpStringWide(const wchar_t* in, CS_OUT const wchar_t** out);
 DLL_API const char16_t* TestCSharpString16(const char16_t* in, CS_OUT const char16_t** out);    
 DLL_API const char32_t* TestCSharpString32(const char32_t* in, CS_OUT const char32_t** out);
+
+
+struct DLL_API RuleOfThreeTester {
+    int a;
+    static int constructorCalls;
+    static int destructorCalls;
+    static int copyConstructorCalls;
+    static int copyAssignmentCalls;
+
+    static void reset();
+
+    RuleOfThreeTester();
+    ~RuleOfThreeTester();
+    RuleOfThreeTester(const RuleOfThreeTester& other);
+    RuleOfThreeTester& operator=(const RuleOfThreeTester& other);
+};
+
+struct DLL_API CallByValueInterface {
+    virtual void CallByValue(RuleOfThreeTester value) = 0;
+    virtual void CallByReference(RuleOfThreeTester& value) = 0;
+    virtual void CallByPointer(RuleOfThreeTester* value) = 0;
+};
+
+void DLL_API CallCallByValueInterfaceValue(CallByValueInterface*);
+void DLL_API CallCallByValueInterfaceReference(CallByValueInterface*);
+void DLL_API CallCallByValueInterfacePointer(CallByValueInterface*);

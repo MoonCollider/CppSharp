@@ -1685,3 +1685,59 @@ const unsigned StructWithEmbeddedArrayOfStructObjectAlignmentOffsets[2]
     offsetof(StructWithEmbeddedArrayOfStructObjectAlignment, boolean),
     offsetof(StructWithEmbeddedArrayOfStructObjectAlignment, embedded_struct),
 };
+
+int RuleOfThreeTester::constructorCalls = 0;
+int RuleOfThreeTester::destructorCalls = 0;
+int RuleOfThreeTester::copyConstructorCalls = 0;
+int RuleOfThreeTester::copyAssignmentCalls = 0;
+
+void RuleOfThreeTester::reset()
+{
+    constructorCalls = 0;
+    destructorCalls = 0;
+    copyConstructorCalls = 0;
+    copyAssignmentCalls = 0;
+}
+
+RuleOfThreeTester::RuleOfThreeTester()
+{
+    a = 0;
+    constructorCalls++;
+}
+
+RuleOfThreeTester::RuleOfThreeTester(const RuleOfThreeTester& other)
+{
+    a = other.a;
+    copyConstructorCalls++;
+}
+
+RuleOfThreeTester::~RuleOfThreeTester()
+{
+    destructorCalls++;
+}
+
+RuleOfThreeTester& RuleOfThreeTester::operator=(const RuleOfThreeTester& other)
+{
+    a = other.a;
+    copyAssignmentCalls++;
+    return *this;
+}
+
+// test if generated code correctly calls constructors and destructors when going from C++ to C#
+void CallCallByValueInterfaceValue(CallByValueInterface* interface)
+{
+    RuleOfThreeTester value;
+    interface->CallByValue(value);
+}
+
+void CallCallByValueInterfaceReference(CallByValueInterface* interface)
+{
+    RuleOfThreeTester value;
+    interface->CallByReference(value);
+}
+
+void CallCallByValueInterfacePointer(CallByValueInterface* interface)
+{
+    RuleOfThreeTester value;
+    interface->CallByPointer(&value);
+}
