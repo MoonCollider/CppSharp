@@ -2478,7 +2478,27 @@ internal static{(@new ? " new" : string.Empty)} {printedClass} __GetOrCreateInst
                     {
                         @new = @class.HasBase && HasVirtualTables(@class.Bases.First().Class);
 
-                        WriteLines($@"
+                        if (@class.IsSingleton)
+                        {
+                            WriteLines($@"
+private static {printedClass} singletonInstance;
+internal static{(@new ? " new" : string.Empty)} {printedClass} __GetInstance({TypePrinter.IntPtrType} native)
+{{
+    if (singletonInstance != null)
+        return singletonInstance
+    if (!{Helpers.TryGetNativeToManagedMappingIdentifier}(native, out var managed))
+        throw new global::System.Exception(""No managed instance was found"");
+    var result = ({printedClass})managed;
+    if (result.{Helpers.OwnsNativeInstanceIdentifier})
+        result.SetupVTables();
+    singletonInstance = result;
+    return result;
+}}");
+                        }
+                        // Not a singleton.
+                        else
+                        {
+                            WriteLines($@"
 internal static{(@new ? " new" : string.Empty)} {printedClass} __GetInstance({TypePrinter.IntPtrType} native)
 {{
     if (!{Helpers.TryGetNativeToManagedMappingIdentifier}(native, out var managed))
@@ -2488,6 +2508,7 @@ internal static{(@new ? " new" : string.Empty)} {printedClass} __GetInstance({Ty
         result.SetupVTables();
     return result;
 }}");
+                        }
                         NewLine();
                     }
                 }
