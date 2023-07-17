@@ -83,6 +83,10 @@ namespace CppSharp.AST
         // True if the record is a POD (Plain Old Data) type.
         public bool IsPOD;
 
+        // True if the class is a singleton and should be accessed as such
+        // from the generated GetInstance method.
+        public bool IsSingleton;
+
         // Semantic type of the class.
         public ClassType Type;
 
@@ -140,6 +144,7 @@ namespace CppSharp.AST
             IsUnion = false;
             IsFinal = false;
             IsPOD = false;
+            IsSingleton = false;
             Type = ClassType.RefType;
             Layout = new ClassLayout();
             templateParameters = new List<Declaration>();
