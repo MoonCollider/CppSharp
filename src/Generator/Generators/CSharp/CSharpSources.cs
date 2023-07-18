@@ -2464,7 +2464,7 @@ private static {printedClass} singletonInstance;
 internal static{(@new ? " new" : string.Empty)} {printedClass} __GetInstance({TypePrinter.IntPtrType} native)
 {{
     if (singletonInstance != null)
-        return singletonInstance
+        return singletonInstance;
     if (!{Helpers.TryGetNativeToManagedMappingIdentifier}(native, out var managed))
         throw new global::System.Exception(""No managed instance was found"");
     var result = ({printedClass})managed;
