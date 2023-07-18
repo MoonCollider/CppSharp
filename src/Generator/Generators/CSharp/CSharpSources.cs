@@ -2432,12 +2432,37 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
 
                 if (@class.IsRefType)
                 {
+                    if(@class.IsSingleton)
+                    {
+                        WriteLine($"private static {printedClass} singletonInstance;");
+                    }
+
                     var @new = @class.HasBase && @class.HasRefBase();
 
                     bool generateNativeToManaged = Options.GenerateNativeToManagedFor(@class);
                     if (generateNativeToManaged)
                     {
-                        WriteLines($@"
+                        if (@class.IsSingleton)
+                        {
+                            WriteLines($@"
+internal static{(@new ? " new" : string.Empty)} {printedClass} __GetOrCreateInstance({TypePrinter.IntPtrType} native, bool saveInstance = false, bool skipVTables = false)
+{{
+    if (native == {TypePrinter.IntPtrType}.Zero)
+        return null;
+    if (singletonInstance != null)
+        return singletonInstance;
+    if ({Helpers.TryGetNativeToManagedMappingIdentifier}(native, out var managed))
+        return ({printedClass})managed;
+    var result = {Helpers.CreateInstanceIdentifier}(native, skipVTables);
+    singletonInstance = result;
+    if (saveInstance)
+        {Helpers.RecordNativeToManagedMappingIdentifier}(native, result);
+    return result;
+}}");
+                        }
+                        else
+                        {
+                            WriteLines($@"
 internal static{(@new ? " new" : string.Empty)} {printedClass} __GetOrCreateInstance({TypePrinter.IntPtrType} native, bool saveInstance = false, bool skipVTables = false)
 {{
     if (native == {TypePrinter.IntPtrType}.Zero)
@@ -2449,6 +2474,7 @@ internal static{(@new ? " new" : string.Empty)} {printedClass} __GetOrCreateInst
         {Helpers.RecordNativeToManagedMappingIdentifier}(native, result);
     return result;
 }}");
+                        }
                         NewLine();
                     }
 
@@ -2460,7 +2486,6 @@ internal static{(@new ? " new" : string.Empty)} {printedClass} __GetOrCreateInst
                         if (@class.IsSingleton)
                         {
                             WriteLines($@"
-private static {printedClass} singletonInstance;
 internal static{(@new ? " new" : string.Empty)} {printedClass} __GetInstance({TypePrinter.IntPtrType} native)
 {{
     if (singletonInstance != null)
