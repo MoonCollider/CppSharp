@@ -44,6 +44,7 @@ namespace CppSharp.Generators.CSharp
             ExpressionPrinter = new CSharpExpressionPrinter(TypePrinter);
         }
 
+
         #region Identifiers
 
         // Extracted from:
