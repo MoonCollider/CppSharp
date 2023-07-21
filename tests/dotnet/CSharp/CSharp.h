@@ -1605,3 +1605,13 @@ struct DLL_API CallByValueCopyConstructor {
 };
 
 DLL_API void CallByValueCopyConstructorFunction(CallByValueCopyConstructor s);
+class DLL_API PointerTester
+{
+    int a;
+public:
+    PointerTester();
+    bool IsDefaultInstance();
+    bool IsValid();
+};
+
+DLL_API extern PointerTester* PointerToClass;

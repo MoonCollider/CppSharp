@@ -1798,3 +1798,21 @@ void CallByValueCopyConstructorFunction(CallByValueCopyConstructor s)
 {
     s.a = 99999;
 }
+static PointerTester internalPointerTesterInstance;
+
+PointerTester::PointerTester()
+{
+    a = 0;
+}
+
+bool PointerTester::IsDefaultInstance()
+{
+    return this == &internalPointerTesterInstance;
+}
+
+bool PointerTester::IsValid()
+{
+    return a == 0;
+}
+
+PointerTester* PointerToClass = &internalPointerTesterInstance;

@@ -2003,4 +2003,11 @@ public unsafe class CSharpTests
         Assert.That(CallByValueCopyConstructor.CopyConstructorCalls, Is.EqualTo(1));
         Assert.That(CallByValueCopyConstructor.DestructorCalls, Is.EqualTo(2));
     }
+    
+    [Test]
+    public void TestPointerToClass()
+    {
+        Assert.IsTrue(CSharp.CSharp.PointerToClass.IsDefaultInstance);
+        Assert.IsTrue(CSharp.CSharp.PointerToClass.IsValid);
+    }
 }
