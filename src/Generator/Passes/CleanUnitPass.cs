@@ -31,6 +31,11 @@ namespace CppSharp.Passes
                 includeDir = ".";
             includeDir = Path.GetFullPath(includeDir);
 
+            // Added in https://github.com/mono/CppSharp/pull/1736, but causes us issues.
+            // return Options.Modules.FirstOrDefault(
+            //     m => m.IncludeDirs.Any(i => Path.GetFullPath(i) == includeDir)) ??
+            //     Options.Modules[1];
+
             Module module = Options.Modules.Find(
                 m => m.IncludeDirs.Any(i => Path.GetFullPath(i) == includeDir));
             if (module == null)
