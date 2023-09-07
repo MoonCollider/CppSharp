@@ -2097,7 +2097,9 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
 
             WriteLine($"private static {method.FunctionType} {vTableMethodDelegateName}Instance;");
             NewLine();
-
+            WriteLine("#if ENABLE_IL2CPP");
+            WriteLine($"[AOT.MonoPInvokeCallback(typeof({method.FunctionType}))]");
+            WriteLine("#endif");
             using (WriteBlock($"private static {retType} {vTableMethodDelegateName}Hook({string.Join(", ", @params)})"))
             {
                 WriteLine($@"var {Helpers.TargetIdentifier} = {@class.Visit(TypePrinter)}.__GetInstance({Helpers.InstanceField});");
