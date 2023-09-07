@@ -1719,6 +1719,8 @@ namespace CppSharp
                     return AST.CppAbi.iOS;
                 case CppAbi.iOS64:
                     return AST.CppAbi.iOS64;
+                case CppAbi.WebAssembly:
+                    return AST.CppAbi.WebAssembly;
                 default:
                     throw new ArgumentOutOfRangeException("abi");
             }
@@ -2081,6 +2083,7 @@ namespace CppSharp
             nonTypeTemplateParameter.IsParameterPack = decl.IsParameterPack;
             nonTypeTemplateParameter.IsPackExpansion = decl.IsPackExpansion;
             nonTypeTemplateParameter.IsExpandedParameterPack = decl.IsExpandedParameterPack;
+            nonTypeTemplateParameter.Type = typeConverter.VisitQualified(decl.Type);
             return nonTypeTemplateParameter;
         }
 

@@ -27,11 +27,11 @@ namespace CppSharp.Generators.CSharp
             if (desugared.IsPrimitiveType() &&
                 (parameter.DefaultArgument.Declaration != null ||
                  parameter.DefaultArgument.Class == StatementClass.BinaryOperator))
-                return $"({desugared.Visit(typePrinter)}) {expression}";
+                return $"({desugared.Visit(typePrinter)}) ({expression})";
             var finalType = (desugared.GetFinalPointee() ?? desugared).Desugar();
             if (finalType.TryGetClass(out var @class) && @class.IsInterface)
                 return $@"({@class.Visit(typePrinter)}) ({
-                    @class.OriginalClass.Visit(typePrinter)}) {expression}";
+                    @class.OriginalClass.Visit(typePrinter)}) ({expression})";
             return expression;
         }
 
@@ -61,20 +61,15 @@ namespace CppSharp.Generators.CSharp
                 case StatementClass.BinaryOperator:
                     var binaryOperator = (BinaryOperatorObsolete)expr;
 
-                    var lhsResult = binaryOperator.LHS.String;
-                    if (binaryOperator.LHS.Declaration is Enumeration.Item)
-                        lhsResult = binaryOperator.LHS.Declaration.Visit(typePrinter).Type;
-
-                    var rhsResult = binaryOperator.RHS.String;
-                    if (binaryOperator.RHS.Declaration is Enumeration.Item)
-                        rhsResult = binaryOperator.RHS.Declaration.Visit(typePrinter).Type;
+                    var lhsResult = VisitExpression(binaryOperator.LHS);
+                    var rhsResult = VisitExpression(binaryOperator.RHS);
 
                     return $"{lhsResult} {binaryOperator.OpcodeStr} {rhsResult}";
                 case StatementClass.ConstructorReference:
                     var constructorExpr = (CXXConstructExprObsolete)expr;
                     if (constructorExpr.Arguments.Count == 1 &&
-                        constructorExpr.Arguments[0].Declaration is Enumeration.Item)
-                        return constructorExpr.Arguments[0].Declaration.Visit(typePrinter).Type;
+                        constructorExpr.Arguments[0].Class != StatementClass.Any)
+                        return VisitExpression(constructorExpr.Arguments[0]);
                     goto default;
                 default:
                     return expr.String;

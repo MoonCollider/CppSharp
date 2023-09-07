@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+      <NoWarn>0108</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CSharpPartialMethods.cs" />
+  </ItemGroup>
+</Project>

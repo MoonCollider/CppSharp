@@ -104,6 +104,8 @@ static CppAbi GetClassLayoutAbi(clang::TargetCXXABI::Kind abi)
         return CppAbi::iOS;
     case clang::TargetCXXABI::AppleARM64:
         return CppAbi::iOS64;
+    case clang::TargetCXXABI::WebAssembly:
+        return CppAbi::WebAssembly;
     default:
         llvm_unreachable("Unsupported C++ ABI kind");
     }
@@ -872,14 +874,31 @@ static bool IsRecordValid(const clang::RecordDecl* RC)
     return IsRecordValid(RC, Visited);
 }
 
-static clang::CXXRecordDecl* GetCXXRecordDeclFromBaseType(const clang::QualType& Ty) {
+static clang::CXXRecordDecl* GetCXXRecordDeclFromTemplateName(const clang::TemplateName& Name)
+{
+    using namespace clang;
+
+    switch (Name.getKind()) {
+    case clang::TemplateName::Template:
+        return dyn_cast<clang::CXXRecordDecl>(
+            Name.getAsTemplateDecl()->getTemplatedDecl());
+    case clang::TemplateName::QualifiedTemplate:
+        return dyn_cast<clang::CXXRecordDecl>(
+            Name.getAsQualifiedTemplateName()->getTemplateDecl()->getTemplatedDecl());
+    default:
+        assert(0 && "Unknown template name kind");
+        return nullptr;
+    }
+}
+
+static clang::CXXRecordDecl* GetCXXRecordDeclFromBaseType(const clang::QualType& Ty)
+{
     using namespace clang;
 
     if (auto RT = Ty->getAs<clang::RecordType>())
         return dyn_cast<clang::CXXRecordDecl>(RT->getDecl());
     else if (auto TST = Ty->getAs<clang::TemplateSpecializationType>())
-        return dyn_cast<clang::CXXRecordDecl>(
-            TST->getTemplateName().getAsTemplateDecl()->getTemplatedDecl());
+        return GetCXXRecordDeclFromTemplateName(TST->getTemplateName());
     else if (auto Injected = Ty->getAs<clang::InjectedClassNameType>())
         return Injected->getDecl();
 
@@ -1428,6 +1447,7 @@ NonTypeTemplateParameter* Parser::WalkNonTypeTemplateParameter(const clang::NonT
     HandleDeclaration(NTTPD, NTP);
     if (NTTPD->hasDefaultArgument())
         NTP->defaultArgument = WalkExpressionObsolete(NTTPD->getDefaultArgument());
+    NTP->type = GetQualifiedType(NTTPD->getType());
     NTP->depth = NTTPD->getDepth();
     NTP->index = NTTPD->getIndex();
     NTP->isParameterPack = NTTPD->isParameterPack();
