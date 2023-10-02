@@ -1011,7 +1011,7 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
         {
             if (field.Type.IsClass() && !field.Type.IsPointer())
             {
-                if (field.Type.TryGetClass(out Class fieldClass) && !(fieldClass is ClassTemplateSpecialization))
+                if (field.Type.TryGetClass(out Class fieldClass) && !(fieldClass is ClassTemplateSpecialization) && !fieldClass.IsValueType)
                 {
                     var caop = fieldClass.Methods.FirstOrDefault(m => m.OperatorKind == CXXOperatorKind.Equal);
                     if (caop != null && caop.IsGenerated)
@@ -2097,7 +2097,9 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
 
             WriteLine($"private static {method.FunctionType} {vTableMethodDelegateName}Instance;");
             NewLine();
-
+            WriteLine("#if ENABLE_IL2CPP");
+            WriteLine($"[AOT.MonoPInvokeCallback(typeof({method.FunctionType}))]");
+            WriteLine("#endif");
             using (WriteBlock($"private static {retType} {vTableMethodDelegateName}Hook({string.Join(", ", @params)})"))
             {
                 WriteLine($@"var {Helpers.TargetIdentifier} = {@class.Visit(TypePrinter)}.__GetInstance({Helpers.InstanceField});");
