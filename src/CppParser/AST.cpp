@@ -674,6 +674,7 @@ Method::Method()
     , isStatic(false)
     , isConst(false)
     , isExplicit(false)
+    , isVolatile(false)
     , isDefaultConstructor(false)
     , isCopyConstructor(false)
     , isMoveConstructor(false)
@@ -1077,6 +1078,8 @@ HTMLTagComment::HTMLTagComment(CommentKind Kind) : InlineContentComment(Kind) {}
 HTMLStartTagComment::Attribute::Attribute() {}
 
 HTMLStartTagComment::Attribute::Attribute(const Attribute& rhs) : name(rhs.name), value(rhs.value) {}
+
+HTMLStartTagComment::Attribute::~Attribute() {}
 
 HTMLStartTagComment::HTMLStartTagComment() : HTMLTagComment(CommentKind::HTMLStartTagComment) {}
 
