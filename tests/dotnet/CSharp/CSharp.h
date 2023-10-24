@@ -1603,15 +1603,16 @@ public:
 };
 
 DLL_API extern PointerTester* PointerToClass;
-struct DLL_API Issue1451 {
+
+struct DLL_API CallByValueCopyConstructor {
     int a;
     static int constructorCalls;
     static int destructorCalls;
     static int copyConstructorCalls;
 
-    Issue1451();
-    ~Issue1451();
-    Issue1451(const Issue1451& other);
+    CallByValueCopyConstructor();
+    ~CallByValueCopyConstructor();
+    CallByValueCopyConstructor(const CallByValueCopyConstructor& other);
 };
 
-bool DLL_API TestObjectPassByValue(Issue1451 s);
+DLL_API void CallByValueCopyConstructorFunction(CallByValueCopyConstructor s);

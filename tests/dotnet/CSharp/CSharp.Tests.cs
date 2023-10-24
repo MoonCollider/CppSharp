@@ -1997,17 +1997,17 @@ public unsafe class CSharpTests
     }
 
     [Test]
-    public void TestObjectPassByValue1451()
+    public void TestCallByValueCopyConstructor()
     {
-        using (var s = new Issue1451())
+        using (var s = new CallByValueCopyConstructor())
         {
             s.A = 500;
-            Assert.IsTrue(CSharp.CSharp.TestObjectPassByValue(s));
+            CSharp.CSharp.CallByValueCopyConstructorFunction(s);
             Assert.That(s.A, Is.EqualTo(500));
         }
 
-        Assert.That(Issue1451.ConstructorCalls, Is.EqualTo(1));
-        Assert.That(Issue1451.CopyConstructorCalls, Is.EqualTo(1));
-        Assert.That(Issue1451.DestructorCalls, Is.EqualTo(2));
+        Assert.That(CallByValueCopyConstructor.ConstructorCalls, Is.EqualTo(1));
+        Assert.That(CallByValueCopyConstructor.CopyConstructorCalls, Is.EqualTo(1));
+        Assert.That(CallByValueCopyConstructor.DestructorCalls, Is.EqualTo(2));
     }
 }

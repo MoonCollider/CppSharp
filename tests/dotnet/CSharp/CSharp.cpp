@@ -1791,29 +1791,29 @@ bool PointerTester::IsValid()
 }
 
 PointerTester* PointerToClass = &internalPointerTesterInstance;
-int Issue1451::constructorCalls = 0;
-int Issue1451::destructorCalls = 0;
-int Issue1451::copyConstructorCalls = 0;
 
-Issue1451::Issue1451()
+int CallByValueCopyConstructor::constructorCalls = 0;
+int CallByValueCopyConstructor::destructorCalls = 0;
+int CallByValueCopyConstructor::copyConstructorCalls = 0;
+
+CallByValueCopyConstructor::CallByValueCopyConstructor()
 {
     a = 0;
     constructorCalls++;
 }
 
-Issue1451::Issue1451(const Issue1451& other)
+CallByValueCopyConstructor::CallByValueCopyConstructor(const CallByValueCopyConstructor& other)
 {
     a = other.a;
     copyConstructorCalls++;
 }
 
-Issue1451::~Issue1451()
+CallByValueCopyConstructor::~CallByValueCopyConstructor()
 {
     destructorCalls++;
 }
 
-bool TestObjectPassByValue(Issue1451 s)
+void CallByValueCopyConstructorFunction(CallByValueCopyConstructor s)
 {
     s.a = 99999;
-    return true;
 }
