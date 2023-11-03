@@ -340,5 +340,17 @@ namespace CppSharp.AST
 
             throw new NotSupportedException();
         }
+
+        public static bool IsInNamespace(this Declaration decl, string name)
+        {
+            DeclarationContext @namespace = decl.Namespace;
+            while (@namespace != null)
+            {
+                if (@namespace.Name == name)
+                    return true;
+                @namespace = @namespace.Namespace;
+            }
+            return false;
+        }
     }
 }

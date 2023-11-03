@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using CppSharp.AST;
 using CppSharp.AST.Extensions;
@@ -69,38 +70,40 @@ namespace CppSharp.Passes
 
         private bool CheckDefaultParametersForAmbiguity(Function function, Function overload)
         {
-            // detect if function and overload are copy assignment or move assignment operators
-            // if both are either one of those types, ignore move assignment operator
-            if (function.OperatorKind == CXXOperatorKind.Equal && overload.OperatorKind == CXXOperatorKind.Equal &&
-                    function.Parameters.Count == 1 && overload.Parameters.Count == 1)
+            if (function.IsInNamespace("Kyt"))
             {
-                var functionParamType = function.Parameters[0].Type;
-                var overloadParamType = overload.Parameters[0].Type;
-
-                if (functionParamType is PointerType && overloadParamType is PointerType)
+                // detect if function and overload are copy assignment or move assignment operators
+                // if both are either one of those types, ignore move assignment operator
+                if (function.OperatorKind == CXXOperatorKind.Equal && overload.OperatorKind == CXXOperatorKind.Equal &&
+                        function.Parameters.Count == 1 && overload.Parameters.Count == 1)
                 {
-                    var functionParamPointerType = functionParamType as PointerType;
-                    var overloadParamPointerType = overloadParamType as PointerType;
+                    var functionParamType = function.Parameters[0].Type;
+                    var overloadParamType = overload.Parameters[0].Type;
 
-                    var functionPointee = functionParamPointerType.GetPointee();
-                    var overloadPointee = overloadParamPointerType.GetPointee();
-
-                    functionPointee.TryGetClass(out Class @functionPointeeClass);
-                    overloadPointee.TryGetClass(out Class @overloadPointeeClass);
-
-                    if (functionPointeeClass == function.Namespace && @overloadPointeeClass == overload.Namespace)
+                    if (functionParamType is PointerType && overloadParamType is PointerType)
                     {
-                        if (functionParamPointerType.Modifier == PointerType.TypeModifier.RVReference &&
-                            overloadParamPointerType.Modifier == PointerType.TypeModifier.LVReference)
+                        var functionParamPointerType = functionParamType as PointerType;
+                        var overloadParamPointerType = overloadParamType as PointerType;
+
+                        var functionPointee = functionParamPointerType.GetPointee();
+                        var overloadPointee = overloadParamPointerType.GetPointee();
+
+                        functionPointee.TryGetClass(out Class @functionPointeeClass);
+                        overloadPointee.TryGetClass(out Class @overloadPointeeClass);
+                        if (functionPointeeClass == function.Namespace && @overloadPointeeClass == overload.Namespace)
                         {
-                            function.ExplicitlyIgnore();
-                            return true;
-                        }
-                        else if (functionParamPointerType.Modifier == PointerType.TypeModifier.LVReference &&
-                            overloadParamPointerType.Modifier == PointerType.TypeModifier.RVReference)
-                        {
-                            overload.ExplicitlyIgnore();
-                            return true;
+                            if (functionParamPointerType.Modifier == PointerType.TypeModifier.RVReference &&
+                                overloadParamPointerType.Modifier == PointerType.TypeModifier.LVReference)
+                            {
+                                function.ExplicitlyIgnore();
+                                return true;
+                            }
+                            else if (functionParamPointerType.Modifier == PointerType.TypeModifier.LVReference &&
+                                overloadParamPointerType.Modifier == PointerType.TypeModifier.RVReference)
+                            {
+                                overload.ExplicitlyIgnore();
+                                return true;
+                            }
                         }
                     }
                 }

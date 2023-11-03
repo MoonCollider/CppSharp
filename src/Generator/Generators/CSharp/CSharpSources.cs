@@ -1009,29 +1009,28 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
 
         private void GenerateFieldSetter(Field field, Class @class, QualifiedType fieldType)
         {
-            if (field.Type.IsClass() && !field.Type.IsPointer())
+            if (@class.IsInNamespace("Kyt"))
             {
-                if (field.Type.TryGetClass(out Class fieldClass) && !(fieldClass is ClassTemplateSpecialization))
+                if (field.Type.IsClass() && !field.Type.IsPointer())
                 {
-                    var caop = fieldClass.Methods.FirstOrDefault(m => m.OperatorKind == CXXOperatorKind.Equal);
-                    if (caop != null && caop.IsGenerated)
+                    if (field.Type.TryGetClass(out Class fieldClass) && !(fieldClass is ClassTemplateSpecialization) && !fieldClass.IsValueType)
                     {
-                        var fieldName = ((Class)field.Namespace).Layout.Fields.First(
-                            f => f.FieldPtr == field.OriginalPtr).Name;
-                        var typeName = TypePrinter.PrintNative(@class);
-                        WriteLine($"var dest = new __IntPtr(&(({typeName}*)__Instance)->{fieldName});");
-                        WriteLine($"var src = value.{Helpers.InstanceIdentifier};");
-
-                        if (IsInternalClassNested(fieldClass))
-                            typeName.RemoveNamespace();
-
-                        WriteLine($"{fieldClass}.__Internal.OperatorEqual(dest, src);");
-
-                        return;
+                        var caop = fieldClass.Methods.FirstOrDefault(m => m.OperatorKind == CXXOperatorKind.Equal);
+                        if (caop != null && caop.IsGenerated)
+                        {
+                            var fieldName = ((Class)field.Namespace).Layout.Fields.First(
+                                f => f.FieldPtr == field.OriginalPtr).Name;
+                            var typeName = TypePrinter.PrintNative(@class);
+                            WriteLine($"var dest = new __IntPtr(&(({typeName}*)__Instance)->{fieldName});");
+                            WriteLine($"var src = value.{Helpers.InstanceIdentifier};");
+                            if (IsInternalClassNested(fieldClass))
+                                typeName.RemoveNamespace();
+                            WriteLine($"{fieldClass}.__Internal.OperatorEqual(dest, src);");
+                            return;
+                        }
                     }
                 }
             }
-
 
             string returnVar;
             Type type = field.Type.Desugar();
@@ -1519,8 +1518,11 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
 
                 // We only use the copy assignment operator internally,
                 // so do not generate a public method wrapper for it
-                if (method.OperatorKind == CXXOperatorKind.Equal)
-                    continue;
+                if (@class.IsInNamespace("Kyt")
+                    && method.OperatorKind == CXXOperatorKind.Equal)
+                { 
+                        continue;
+                }
 
                 GenerateMethod(method, @class);
             }

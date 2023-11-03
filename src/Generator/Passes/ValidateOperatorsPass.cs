@@ -55,10 +55,11 @@ namespace CppSharp.Passes
                 // The conversion operators can be overloaded
                 case CXXOperatorKind.Conversion:
                 case CXXOperatorKind.ExplicitConversion:
+                    return true;
 
                 // Copy assignment operator is used internally
                 case CXXOperatorKind.Equal:
-                    return true;
+                    return @operator.IsInNamespace("Kyt") ? true : false;
 
                 // The comparison operators can be overloaded if their return type is bool
                 case CXXOperatorKind.EqualEqual:
