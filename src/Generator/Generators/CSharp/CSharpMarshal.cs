@@ -769,7 +769,7 @@ namespace CppSharp.Generators.CSharp
                 if (Context.Parameter.IsIndirect)
                 {
                     // Kythera-specific classes.
-                    if (@class.Namespace.Name == "Kyt")
+                    if (@class.IsInNamespace("Kyt"))
                     {
                         Method cctor = @class.HasNonTrivialCopyConstructor ? @class.Methods.First(c => c.IsCopyConstructor) : null;
                         if (cctor != null && cctor.IsGenerated)
