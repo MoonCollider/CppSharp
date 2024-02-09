@@ -28,7 +28,7 @@
     <NativeProjectsDir>$(ActionDir)projects\</NativeProjectsDir>
     <PackageDir>$(RootDir)artifacts\package\</PackageDir>
     <TargetDir>$(OutputPath)</TargetDir>
-    <LangVersion>9.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
     <WarningLevel>4</WarningLevel>
     <DotNetCmd>dotnet</DotNetCmd>
     <GeneratorFileExtension>dll</GeneratorFileExtension>
@@ -52,6 +52,7 @@
   </PropertyGroup>
 
   <Target Name="prepack" DependsOnTargets="Build" Condition="'$(IsPackable)' == 'true' AND '$(Platform)' == 'x64'">
+    <Copy SourceFiles="$(TargetDir)$(TargetFileName)" DestinationFolder="$(PackageDir)ref\$(GlobalTargetFramework)" Condition="'$(ProduceReferenceAssembly)' == 'true' AND '$(RID)' == 'win-x64'" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PackageDir)runtimes\$(RID)\lib\$(GlobalTargetFramework)" />
   </Target>
 </Project>

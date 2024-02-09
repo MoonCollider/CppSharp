@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 [assembly:InternalsVisibleTo("CppSharp.Parser")]
 
 #pragma warning disable CS0109 // Member does not hide an inherited member; new keyword is not required
+#pragma warning disable CS9084 // Struct member returns 'this' or other instance members by reference
 
 namespace CppSharp
 {
@@ -187,12 +188,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -378,12 +379,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -602,7 +603,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -850,7 +851,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -1043,12 +1044,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -1151,7 +1152,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -1323,7 +1324,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -1462,7 +1463,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -1589,7 +1590,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -1716,7 +1717,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -1847,7 +1848,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -2018,12 +2019,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -2117,7 +2118,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -2416,12 +2417,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -2529,7 +2530,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -2673,7 +2674,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -2786,7 +2787,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -2918,12 +2919,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -3017,7 +3018,7 @@ namespace CppSharp
             }
 
             private SourceLocation.__Internal __instance;
-            internal SourceLocation.__Internal __Instance => __instance;
+            internal ref SourceLocation.__Internal __Instance => ref __instance;
 
             internal static SourceLocation __CreateInstance(__IntPtr native, bool skipVTables = false)
             {
@@ -3038,6 +3039,14 @@ namespace CppSharp
             private SourceLocation(void* native, bool skipVTables = false) : this()
             {
                 __instance = *(global::CppSharp.Parser.SourceLocation.__Internal*) native;
+            }
+
+            public SourceLocation()
+            {
+                fixed (__Internal* __instancePtr = &__instance)
+                {
+                    __Internal.ctor(new __IntPtr(__instancePtr));
+                }
             }
 
             public SourceLocation(uint ID)
@@ -3175,12 +3184,12 @@ namespace CppSharp
 
             public void Dispose()
             {
-                Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
             }
 
             partial void DisposePartial(bool disposing);
 
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
             {
                 if (__Instance == IntPtr.Zero)
                     return;
@@ -3402,12 +3411,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -3543,12 +3552,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -3695,12 +3704,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -4082,7 +4091,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -4826,12 +4835,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -4997,7 +5006,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -5167,7 +5176,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -5313,7 +5322,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -5688,7 +5697,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -6392,9 +6401,10 @@ namespace CppSharp
                 Itanium = 0,
                 Microsoft = 1,
                 ARM = 2,
-                iOS = 3,
-                iOS64 = 4,
-                WebAssembly = 5
+                AArch64 = 3,
+                iOS = 4,
+                AppleARM64 = 5,
+                WebAssembly = 6
             }
 
             public enum RecordArgABI
@@ -6574,12 +6584,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -7147,7 +7157,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -7554,7 +7564,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -7693,7 +7703,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -7813,7 +7823,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -7946,7 +7956,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -8082,12 +8092,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -8232,7 +8242,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -8344,7 +8354,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -8503,7 +8513,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -8650,7 +8660,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -8804,7 +8814,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -9047,7 +9057,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -9507,7 +9517,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -9878,7 +9888,7 @@ namespace CppSharp
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected override void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -9985,7 +9995,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -10189,7 +10199,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -10357,12 +10367,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -10535,7 +10545,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -10708,7 +10718,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -10819,12 +10829,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -10989,12 +10999,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -11141,12 +11151,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -11318,12 +11328,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -11494,12 +11504,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -11687,12 +11697,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -12084,7 +12094,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -12505,7 +12515,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -12674,7 +12684,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -12795,7 +12805,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -12962,7 +12972,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -13123,7 +13133,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -13265,7 +13275,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -13486,7 +13496,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -13698,7 +13708,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -13770,7 +13780,7 @@ namespace CppSharp
 
             public unsafe partial class ClassTemplatePartialSpecialization : global::CppSharp.Parser.AST.ClassTemplateSpecialization, IDisposable
             {
-                [StructLayout(LayoutKind.Sequential, Size = 360)]
+                [StructLayout(LayoutKind.Sequential, Size = 372)]
                 public new partial struct __Internal
                 {
                     internal global::CppSharp.Parser.AST.DeclarationKind kind;
@@ -13825,6 +13835,7 @@ namespace CppSharp
                     internal __IntPtr templatedDecl;
                     internal global::Std.Vector.__Internalc__N_std_S_vector____N_CppSharp_N_CppParser_N_AST_S_TemplateArgument___N_std_S_allocator__S0_ Arguments;
                     internal global::CppSharp.Parser.AST.TemplateSpecializationKind specializationKind;
+                    internal global::Std.Vector.__Internalc__N_std_S_vector_____N_CppSharp_N_CppParser_N_AST_S_Declaration___N_std_S_allocator__S0_ Parameters;
 
                     [SuppressUnmanagedCodeSecurity, DllImport("CppSharp.CppParser.dll", EntryPoint = "??0ClassTemplatePartialSpecialization@AST@CppParser@CppSharp@@QAE@XZ", CallingConvention = __CallingConvention.ThisCall)]
                     internal static extern __IntPtr ctor(__IntPtr __instance);
@@ -13834,6 +13845,18 @@ namespace CppSharp
 
                     [SuppressUnmanagedCodeSecurity, DllImport("CppSharp.CppParser.dll", EntryPoint = "??1ClassTemplatePartialSpecialization@AST@CppParser@CppSharp@@QAE@XZ", CallingConvention = __CallingConvention.ThisCall)]
                     internal static extern void dtor(__IntPtr __instance);
+
+                    [SuppressUnmanagedCodeSecurity, DllImport("CppSharp.CppParser.dll", EntryPoint = "?getParameters@ClassTemplatePartialSpecialization@AST@CppParser@CppSharp@@QAEPAVDeclaration@234@I@Z", CallingConvention = __CallingConvention.ThisCall)]
+                    internal static extern __IntPtr GetParameters(__IntPtr __instance, uint i);
+
+                    [SuppressUnmanagedCodeSecurity, DllImport("CppSharp.CppParser.dll", EntryPoint = "?addParameters@ClassTemplatePartialSpecialization@AST@CppParser@CppSharp@@QAEXAAPAVDeclaration@234@@Z", CallingConvention = __CallingConvention.ThisCall)]
+                    internal static extern void AddParameters(__IntPtr __instance, __IntPtr s);
+
+                    [SuppressUnmanagedCodeSecurity, DllImport("CppSharp.CppParser.dll", EntryPoint = "?clearParameters@ClassTemplatePartialSpecialization@AST@CppParser@CppSharp@@QAEXXZ", CallingConvention = __CallingConvention.ThisCall)]
+                    internal static extern void ClearParameters(__IntPtr __instance);
+
+                    [SuppressUnmanagedCodeSecurity, DllImport("CppSharp.CppParser.dll", EntryPoint = "?getParametersCount@ClassTemplatePartialSpecialization@AST@CppParser@CppSharp@@QAEIXZ", CallingConvention = __CallingConvention.ThisCall)]
+                    internal static extern uint GetParametersCount(__IntPtr __instance);
                 }
 
                 internal static new ClassTemplatePartialSpecialization __CreateInstance(__IntPtr native, bool skipVTables = false)
@@ -13902,7 +13925,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -13913,6 +13936,36 @@ namespace CppSharp
                     if (__ownsNativeInstance)
                         Marshal.FreeHGlobal(__Instance);
                     __Instance = IntPtr.Zero;
+                }
+
+                public global::CppSharp.Parser.AST.Declaration GetParameters(uint i)
+                {
+                    var ___ret = __Internal.GetParameters(__Instance, i);
+                    var __result0 = global::CppSharp.Parser.AST.Declaration.__GetOrCreateInstance(___ret, false);
+                    return __result0;
+                }
+
+                public void AddParameters(global::CppSharp.Parser.AST.Declaration s)
+                {
+                    if (ReferenceEquals(s, null))
+                        throw new global::System.ArgumentNullException("s", "Cannot be null because it is a C++ reference (&).");
+                    var ____arg0 = s.__Instance;
+                    var __arg0 = new __IntPtr(&____arg0);
+                    __Internal.AddParameters(__Instance, __arg0);
+                }
+
+                public void ClearParameters()
+                {
+                    __Internal.ClearParameters(__Instance);
+                }
+
+                public uint ParametersCount
+                {
+                    get
+                    {
+                        var ___ret = __Internal.GetParametersCount(__Instance);
+                        return ___ret;
+                    }
                 }
             }
 
@@ -14038,7 +14091,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -14209,12 +14262,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -14423,7 +14476,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -14612,7 +14665,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -14793,7 +14846,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -14911,7 +14964,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -15042,7 +15095,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -15166,12 +15219,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -15311,7 +15364,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -15467,7 +15520,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -15655,7 +15708,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -15842,12 +15895,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -16150,12 +16203,12 @@ namespace CppSharp
 
                 public void Dispose()
                 {
-                    Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                    Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                 }
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -16327,7 +16380,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -16610,7 +16663,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -18968,7 +19021,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -19279,12 +19332,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -19430,7 +19483,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -19556,7 +19609,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -20257,12 +20310,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -20418,7 +20471,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -21281,12 +21334,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -22109,12 +22162,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -23864,7 +23917,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -25237,7 +25290,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -26543,7 +26596,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -26933,7 +26986,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -28817,12 +28870,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -29073,12 +29126,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -29183,12 +29236,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -31351,7 +31404,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -31528,7 +31581,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -31680,7 +31733,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -32455,7 +32508,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -33373,7 +33426,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -34179,7 +34232,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -34722,7 +34775,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -34858,7 +34911,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -35264,7 +35317,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -36408,12 +36461,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -37165,7 +37218,7 @@ namespace CppSharp
 
                 partial void DisposePartial(bool disposing);
 
-                internal protected override void Dispose(bool disposing, bool callNativeDtor )
+                internal protected override void Dispose(bool disposing, bool callNativeDtor)
                 {
                     if (__Instance == IntPtr.Zero)
                         return;
@@ -38674,12 +38727,12 @@ namespace CppSharp
 
                     public void Dispose()
                     {
-                        Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                        Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
                     }
 
                     partial void DisposePartial(bool disposing);
 
-                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+                    internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
                     {
                         if (__Instance == IntPtr.Zero)
                             return;
@@ -39766,12 +39819,12 @@ namespace CppSharp
 
             public void Dispose()
             {
-                Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
             }
 
             partial void DisposePartial(bool disposing);
 
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
             {
                 if (__Instance == IntPtr.Zero)
                     return;
@@ -40652,12 +40705,12 @@ namespace CppSharp
 
             public void Dispose()
             {
-                Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
             }
 
             partial void DisposePartial(bool disposing);
 
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
             {
                 if (__Instance == IntPtr.Zero)
                     return;
@@ -41193,12 +41246,12 @@ namespace CppSharp
 
             public void Dispose()
             {
-                Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
             }
 
             partial void DisposePartial(bool disposing);
 
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
             {
                 if (__Instance == IntPtr.Zero)
                     return;
@@ -41392,12 +41445,12 @@ namespace CppSharp
 
             public void Dispose()
             {
-                Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
             }
 
             partial void DisposePartial(bool disposing);
 
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
             {
                 if (__Instance == IntPtr.Zero)
                     return;
@@ -41606,12 +41659,12 @@ namespace CppSharp
 
             public void Dispose()
             {
-                Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
             }
 
             partial void DisposePartial(bool disposing);
 
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
             {
                 if (__Instance == IntPtr.Zero)
                     return;
@@ -41817,12 +41870,12 @@ namespace CppSharp
 
             public void Dispose()
             {
-                Dispose(disposing: true, callNativeDtor : __ownsNativeInstance );
+                Dispose(disposing: true, callNativeDtor: __ownsNativeInstance);
             }
 
             partial void DisposePartial(bool disposing);
 
-            internal protected virtual void Dispose(bool disposing, bool callNativeDtor )
+            internal protected virtual void Dispose(bool disposing, bool callNativeDtor)
             {
                 if (__Instance == IntPtr.Zero)
                     return;
