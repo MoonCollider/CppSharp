@@ -292,6 +292,8 @@ void Parser::Setup(bool Compile)
     if (opts->verbose)
         printf("Target triple: %s\n", TO->Triple.c_str());
 
+    TO->FeatureMap.insert(std::make_pair("neon", true));
+
     TargetInfo* TI = TargetInfo::CreateTargetInfo(c->getDiagnostics(), TO);
     if (!TI)
     {
