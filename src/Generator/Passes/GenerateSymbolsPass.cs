@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using CppSharp.AST;
 using CppSharp.Parser;
@@ -44,8 +45,18 @@ namespace CppSharp.Passes
                 SymbolsCodeGenerated?.Invoke(this, e);
                 if (!string.IsNullOrEmpty(e.CustomCompiler))
                 {
-                    InvokeCompiler(e.CustomCompiler, e.CompilerArguments,
+                    InvokeCompiler(Platform.Host, e.CustomCompiler, e.CompilerArguments,
                         e.OutputDir, module);
+                    continue;
+                }
+
+                if (Context.ParserOptions.TargetTriple.StartsWith("aarch64"))
+                {
+                    var ndkPath = "C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.7f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\NDK";
+                    var toolchainsPath = Path.Combine(ndkPath, "toolchains", "llvm", "prebuilt", "windows-x86_64");
+                    var sysrootPath = Path.Combine(toolchainsPath, "sysroot");
+                    var compilerPath = Path.Combine(toolchainsPath, "bin", "clang++");
+                    InvokeCompiler(TargetPlatform.Android, compilerPath, GetAndroidArguments(module, sysrootPath, path), Path.GetDirectoryName(path), module);
                     continue;
                 }
 
@@ -69,6 +80,33 @@ namespace CppSharp.Passes
 
                 RemainingCompilationTasks--;
             }
+        }
+
+        private string GetAndroidArguments(Module module, string sysrootPath, string filePath)
+        {
+            StringBuilder moduleProps = new StringBuilder();
+            foreach (string dir in module.IncludeDirs)
+                moduleProps.Append($"-I\"{dir}\" ");
+
+            foreach (string def in module.Defines)
+                moduleProps.Append($"-D{def} ");
+
+            return $"--target=aarch64-none-linux-android22 " +
+                   $"--sysroot=\"{sysrootPath}\" " +
+                   moduleProps.ToString() +
+                   //$"-I\"{Path.Combine(sysrootPath, "usr", "include", "c++", "v1")}\" " +
+                   //$"-I\"{Path.Combine(sysrootPath, "usr", "local", "include")}\" " +
+                   //$"-I\"{Path.Combine(sysrootPath, "..", "lib64", "clang", "12.0.8", "include")}\" " +
+                   //$"-I\"{Path.Combine(sysrootPath, "usr", "include", "aarch64-linux-android")}\" " +
+                   //$"-I\"{Path.Combine(sysrootPath, "usr", "include")}\" " +
+                   $"-L\"{sysrootPath}/usr/lib\" " +
+                   "-fuse-ld=lld " + // Use LLD linker
+                   "-shared " +
+                   "-fPIC " +
+                   "-no-canonical-prefixes " +
+                   "-O2 " +
+                   $"-o {Path.Combine(Path.GetDirectoryName(filePath), $"lib{Path.GetFileNameWithoutExtension(filePath)}.so")} " +
+                   $"{filePath}";
         }
 
         private CompiledLibrary Build(LinkerOptions linkerOptions, string path, Module module)
@@ -273,14 +311,14 @@ namespace CppSharp.Passes
             return success;
         }
 
-        private void InvokeCompiler(string compiler, string arguments, string outputDir, Module module)
+        private void InvokeCompiler(TargetPlatform target, string compiler, string arguments, string outputDir, Module module)
         {
             new Thread(() =>
                 {
                     int error;
                     string errorMessage;
                     ProcessHelper.Run(compiler, arguments, out error, out errorMessage);
-                    var output = GetOutputFile(module.SymbolsLibraryName);
+                    var output = GetOutputFile(target, module.SymbolsLibraryName);
                     if (!File.Exists(Path.Combine(outputDir, output)))
                         Diagnostics.Error(errorMessage);
                     else
@@ -345,7 +383,7 @@ namespace CppSharp.Passes
             using (var linkerOptions = new LinkerOptions(Context.LinkerOptions))
             {
                 linkerOptions.AddLibraryDirs(outputDir);
-                var output = GetOutputFile(library);
+                var output = GetOutputFile(TargetPlatform.Android, library);
                 linkerOptions.AddLibraries(output);
                 using (var parserResult = Parser.ClangParser.ParseLibrary(linkerOptions))
                 {
@@ -367,11 +405,10 @@ namespace CppSharp.Passes
             }
         }
 
-        private static string GetOutputFile(string library)
+        private static string GetOutputFile(TargetPlatform target, string library)
         {
-            return Path.GetFileName($@"{(Platform.IsWindows ?
-                string.Empty : "lib")}{library}.{
-                (Platform.IsMacOS ? "dylib" : Platform.IsWindows ? "dll" : "so")}");
+            return Path.GetFileName($@"{LinkerOptions.GetPlatformSharedObjectPrefix(target)}{library}.{
+                LinkerOptions.GetPlatformSharedObjectExtension(target)}");
         }
 
         private int remainingCompilationTasks;
