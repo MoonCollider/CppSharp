@@ -414,7 +414,16 @@ namespace CppSharp.Generators.CSharp
                 if (@class.IsValueType)
                 {
                     WriteLine($"private {@class.Name}.{Helpers.InternalStruct} {Helpers.InstanceField};");
-                    WriteLine($"internal ref {@class.Name}.{Helpers.InternalStruct} {Helpers.InstanceIdentifier} => ref {Helpers.InstanceField};");
+                    WriteLine($"internal ref {@class.Name}.{Helpers.InternalStruct} {Helpers.InstanceIdentifier}");
+                    WriteOpenBraceAndIndent();
+                    WriteLine("get");
+                    WriteOpenBraceAndIndent();
+                    WriteLine($"fixed ({@class.Name}.{Helpers.InternalStruct}* ptr = &__instance)");
+                    WriteOpenBraceAndIndent();
+                    WriteLine("return ref *ptr;");
+                    UnindentAndWriteCloseBrace();
+                    UnindentAndWriteCloseBrace();
+                    UnindentAndWriteCloseBrace();
                 }
                 else
                 {
