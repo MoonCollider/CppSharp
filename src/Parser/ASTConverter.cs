@@ -1719,10 +1719,12 @@ namespace CppSharp
                     return AST.CppAbi.Microsoft;
                 case CppAbi.ARM:
                     return AST.CppAbi.ARM;
+                case CppAbi.AArch64:
+                    return AST.CppAbi.AArch64;
                 case CppAbi.iOS:
                     return AST.CppAbi.iOS;
-                case CppAbi.iOS64:
-                    return AST.CppAbi.iOS64;
+                case CppAbi.AppleARM64:
+                    return AST.CppAbi.AppleARM64;
                 case CppAbi.WebAssembly:
                     return AST.CppAbi.WebAssembly;
                 default:
@@ -1918,6 +1920,12 @@ namespace CppSharp
         {
             var _decl = new AST.ClassTemplatePartialSpecialization();
             VisitClassTemplateSpecialization(decl, _decl);
+            for (uint i = 0; i < decl.ParametersCount; ++i)
+            {
+                var param = decl.GetParameters(i);
+                var _param = Visit(param);
+                _decl.Parameters.Add(_param);
+            }
             return _decl;
         }
 

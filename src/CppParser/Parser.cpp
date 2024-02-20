@@ -100,10 +100,12 @@ static CppAbi GetClassLayoutAbi(clang::TargetCXXABI::Kind abi)
         return CppAbi::Itanium;
     case clang::TargetCXXABI::GenericARM:
         return CppAbi::ARM;
+    case clang::TargetCXXABI::GenericAArch64:
+        return CppAbi::AArch64;
     case clang::TargetCXXABI::iOS:
         return CppAbi::iOS;
     case clang::TargetCXXABI::AppleARM64:
-        return CppAbi::iOS64;
+        return CppAbi::AppleARM64;
     case clang::TargetCXXABI::WebAssembly:
         return CppAbi::WebAssembly;
     default:
@@ -231,9 +233,11 @@ ConvertToClangTargetCXXABI(CppSharp::CppParser::AST::CppAbi abi)
         return TargetCXXABI::Microsoft;
     case CppSharp::CppParser::AST::CppAbi::ARM:
         return TargetCXXABI::GenericARM;
+    case CppSharp::CppParser::AST::CppAbi::AArch64:
+        return TargetCXXABI::GenericAArch64;
     case CppSharp::CppParser::AST::CppAbi::iOS:
         return TargetCXXABI::iOS;
-    case CppSharp::CppParser::AST::CppAbi::iOS64:
+    case CppSharp::CppParser::AST::CppAbi::AppleARM64:
         return TargetCXXABI::AppleARM64;
     }
 
@@ -727,7 +731,7 @@ void Parser::WalkVTable(const clang::CXXRecordDecl* RD, Class* C)
         }
         break;
     }
-    case TargetCXXABI::GenericItanium:
+    default:
     {
         ItaniumVTableContext VTContext(AST);
 
@@ -735,8 +739,6 @@ void Parser::WalkVTable(const clang::CXXRecordDecl* RD, Class* C)
         C->layout->layout = WalkVTableLayout(VTLayout);
         break;
     }
-    default:
-        llvm_unreachable("Unsupported C++ ABI kind");
     }
 }
 
@@ -1338,6 +1340,8 @@ Parser::WalkClassTemplatePartialSpecialization(const clang::ClassTemplatePartial
                 TS->completeDeclaration = Complete;
         }
     }
+
+    TS->Parameters = WalkTemplateParameterList(CTS->getTemplateParameters());
 
     return TS;
 }

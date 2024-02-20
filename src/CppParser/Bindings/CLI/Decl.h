@@ -255,9 +255,10 @@ namespace CppSharp
                 Itanium = 0,
                 Microsoft = 1,
                 ARM = 2,
-                iOS = 3,
-                iOS64 = 4,
-                WebAssembly = 5
+		AArch64 = 3,
+                iOS = 4,
+                AppleARM64 = 5,
+                WebAssembly = 6
             };
 
             public enum class RecordArgABI
@@ -2205,6 +2206,23 @@ namespace CppSharp
                 ClassTemplatePartialSpecialization(CppSharp::Parser::AST::ClassTemplatePartialSpecialization^ _0);
 
                 ~ClassTemplatePartialSpecialization();
+
+                property ::System::Collections::Generic::List<CppSharp::Parser::AST::Declaration^>^ Parameters
+                {
+                    ::System::Collections::Generic::List<CppSharp::Parser::AST::Declaration^>^ get();
+                    void set(::System::Collections::Generic::List<CppSharp::Parser::AST::Declaration^>^);
+                }
+
+                property unsigned int ParametersCount
+                {
+                    unsigned int get();
+                }
+
+                CppSharp::Parser::AST::Declaration^ GetParameters(unsigned int i);
+
+                void AddParameters(CppSharp::Parser::AST::Declaration^ s);
+
+                void ClearParameters();
             };
 
             public ref class FunctionTemplate : CppSharp::Parser::AST::Template

@@ -10,8 +10,10 @@ jobs:
       matrix:
         config:
           - { os: ubuntu-22.04, platform: x64, cxx: g++-11, cc: gcc-11 }
+          - { os: ubuntu-22.04, platform: arm64, cxx: g++-11, cc: gcc-11 }
           - { os: macos-11, platform: x64, cxx: clang++, cc: clang }
           - { os: macos-12, platform: x64, cxx: clang++, cc: clang }
+          - { os: macos-12, platform: arm64, cxx: clang++, cc: clang }
 
     runs-on: ${{ matrix.config.os }}
 
@@ -22,8 +24,12 @@ jobs:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: lukka/get-cmake@latest
+
+      - name: Install cross compilers
+        if: startsWith(matrix.config.os, 'ubuntu') && startsWith(matrix.config.platform, 'arm64')
+        run: sudo apt install -y g++-aarch64-linux-gnu gcc-aarch64-linux-gnu
 
       - name: Clone LLVM
         shell: bash

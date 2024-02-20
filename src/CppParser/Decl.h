@@ -471,8 +471,9 @@ namespace CppSharp
                 Itanium,
                 Microsoft,
                 ARM,
+                AArch64,
                 iOS,
-                iOS64,
+                AppleARM64,
                 WebAssembly
             };
 
@@ -715,6 +716,7 @@ namespace CppSharp
             public:
                 ClassTemplatePartialSpecialization();
                 ~ClassTemplatePartialSpecialization();
+                VECTOR(Declaration *, Parameters)
             };
 
             class CS_API FunctionTemplate : public Template
