@@ -369,7 +369,8 @@ namespace CppSharp.Passes
                         foreach (var module in Context.Options.Modules.Where(compiledLibraries.ContainsKey))
                         {
                             CompiledLibrary compiledLibrary = compiledLibraries[module];
-                            CollectSymbols(compiledLibrary.OutputDir, compiledLibrary.Library);
+                            TargetPlatform target = module.Defines.Contains("ANDROID") ? TargetPlatform.Android : Platform.Host;
+                            CollectSymbols(target, compiledLibrary.OutputDir, compiledLibrary.Library);
                         }
                         var findSymbolsPass = Context.TranslationUnitPasses.FindPass<FindSymbolsPass>();
                         findSymbolsPass.Wait = false;
@@ -378,12 +379,12 @@ namespace CppSharp.Passes
             }
         }
 
-        private void CollectSymbols(string outputDir, string library)
+        private void CollectSymbols(TargetPlatform target, string outputDir, string library)
         {
             using (var linkerOptions = new LinkerOptions(Context.LinkerOptions))
             {
                 linkerOptions.AddLibraryDirs(outputDir);
-                var output = GetOutputFile(TargetPlatform.Android, library);
+                var output = GetOutputFile(target, library);
                 linkerOptions.AddLibraries(output);
                 using (var parserResult = Parser.ClangParser.ParseLibrary(linkerOptions))
                 {
