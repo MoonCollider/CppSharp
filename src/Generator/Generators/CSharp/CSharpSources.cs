@@ -2320,6 +2320,13 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
                 }
             }
 
+            if (@class.KytGenerateOnDispose)
+            {
+                PushBlock(BlockKind.Field);
+                WriteLine("public Action<bool> OnDispose;");
+                PopBlock(NewLineKind.BeforeNextBlock);
+            }
+
             // Declare partial method that the partial class can implement to participate
             // in dispose.
             PushBlock(BlockKind.Method);
@@ -2359,7 +2366,10 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
             //
             // Delegate to partial method if implemented
             WriteLine("DisposePartial(disposing);");
-
+            if (@class.KytGenerateOnDispose)
+            {
+                WriteLine("OnDispose?.Invoke(disposing);");
+            }
             var dtor = @class.Destructors.FirstOrDefault();
             if (dtor != null && dtor.Access != AccessSpecifier.Private &&
                 @class.HasNonTrivialDestructor && !@class.IsAbstract)
@@ -2503,7 +2513,7 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
 
                 if (@class.IsRefType)
                 {
-                    if(@class.IsSingleton)
+                    if(@class.KytIsSingleton)
                     {
                         WriteLine($"private static {printedClass} singletonInstance;");
                     }
@@ -2513,7 +2523,7 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
                     bool generateNativeToManaged = Options.GenerateNativeToManagedFor(@class);
                     if (generateNativeToManaged)
                     {
-                        if (@class.IsSingleton)
+                        if (@class.KytIsSingleton)
                         {
                             WriteLines($@"
 internal static{(@new ? " new" : string.Empty)} {printedClass} __GetOrCreateInstance({TypePrinter.IntPtrType} native, bool saveInstance = false, bool skipVTables = false)
@@ -2554,7 +2564,7 @@ internal static{(@new ? " new" : string.Empty)} {printedClass} __GetOrCreateInst
                     {
                         @new = @class.HasBase && HasVirtualTables(@class.Bases.First().Class);
 
-                        if (@class.IsSingleton)
+                        if (@class.KytIsSingleton)
                         {
                             WriteLines($@"
 internal static{(@new ? " new" : string.Empty)} {printedClass} __GetInstance({TypePrinter.IntPtrType} native)
