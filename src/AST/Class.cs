@@ -85,7 +85,12 @@ namespace CppSharp.AST
 
         // True if the class is a singleton and should be accessed as such
         // from the generated GetInstance method.
-        public bool IsSingleton;
+        public bool KytIsSingleton;
+
+        // True if the class should generate an action that is called from Dispose.
+        // This allows you to hook into the native destruction of an object from
+        // outside the object, which helps when using the composition pattern.
+        public bool KytGenerateOnDispose;
 
         // Semantic type of the class.
         public ClassType Type;
@@ -144,7 +149,8 @@ namespace CppSharp.AST
             IsUnion = false;
             IsFinal = false;
             IsPOD = false;
-            IsSingleton = false;
+            KytIsSingleton = false;
+            KytGenerateOnDispose = false;
             Type = ClassType.RefType;
             Layout = new ClassLayout();
             templateParameters = new List<Declaration>();
