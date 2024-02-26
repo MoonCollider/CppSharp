@@ -1016,7 +1016,7 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
                     if (field.Type.TryGetClass(out Class fieldClass) && !(fieldClass is ClassTemplateSpecialization) && !fieldClass.IsValueType)
                     {
                         var caop = fieldClass.Methods.FirstOrDefault(m => m.OperatorKind == CXXOperatorKind.Equal);
-                        if (caop != null && caop.IsExplicitlyGenerated)
+                        if (caop != null && caop.IsGenerated)
                         {
                             var fieldName = ((Class)field.Namespace).Layout.Fields.First(
                                 f => f.FieldPtr == field.OriginalPtr).Name;
