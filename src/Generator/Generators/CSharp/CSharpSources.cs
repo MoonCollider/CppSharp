@@ -1027,7 +1027,7 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
         {
             if (@class.IsInNamespace("Kyt"))
             {
-                if (field.Type.IsClass() && !field.Type.IsPointer())
+                if (field.Type.IsClass() && !field.Type.IsPointer() && !@class.IsValueType)
                 {
                     if (field.Type.TryGetClass(out Class fieldClass) && !(fieldClass is ClassTemplateSpecialization) && !fieldClass.IsValueType)
                     {
@@ -1041,7 +1041,7 @@ internal static bool {Helpers.TryGetNativeToManagedMappingIdentifier}(IntPtr nat
                             WriteLine($"var src = value.{Helpers.InstanceIdentifier};");
                             if (IsInternalClassNested(fieldClass))
                                 typeName.RemoveNamespace();
-                            WriteLine($"{fieldClass}.__Internal.OperatorEqual(dest, src);");
+                            WriteLine($"{fieldClass.Name}.__Internal.OperatorEqual(dest, src);");
                             return;
                         }
                     }
