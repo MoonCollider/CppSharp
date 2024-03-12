@@ -369,7 +369,9 @@ namespace CppSharp.Passes
                         foreach (var module in Context.Options.Modules.Where(compiledLibraries.ContainsKey))
                         {
                             CompiledLibrary compiledLibrary = compiledLibraries[module];
-                            TargetPlatform target = module.Defines.Contains("ANDROID") ? TargetPlatform.Android : Platform.Host;
+                            TargetPlatform target = Context.ParserOptions.TargetTriple.StartsWith("aarch64")
+                                ? TargetPlatform.Android
+                                : Platform.Host;
                             CollectSymbols(target, compiledLibrary.OutputDir, compiledLibrary.Library);
                         }
                         var findSymbolsPass = Context.TranslationUnitPasses.FindPass<FindSymbolsPass>();
