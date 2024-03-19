@@ -56,7 +56,8 @@ namespace CppSharp.Passes
                     var toolchainsPath = Path.Combine(ndkPath, "toolchains", "llvm", "prebuilt", "windows-x86_64");
                     var sysrootPath = Path.Combine(toolchainsPath, "sysroot");
                     var compilerPath = Path.Combine(toolchainsPath, "bin", "clang++");
-                    InvokeCompiler(TargetPlatform.Android, compilerPath, GetAndroidArguments(module, sysrootPath, path), Path.GetDirectoryName(path), module);
+                    var arguments = GetAndroidArguments(module, sysrootPath, path);
+                    InvokeCompiler(TargetPlatform.Android, compilerPath, arguments, Path.GetDirectoryName(path), module);
                     continue;
                 }
 
@@ -94,13 +95,11 @@ namespace CppSharp.Passes
             return $"--target=aarch64-none-linux-android22 " +
                    $"--sysroot=\"{sysrootPath}\" " +
                    moduleProps.ToString() +
-                   //$"-I\"{Path.Combine(sysrootPath, "usr", "include", "c++", "v1")}\" " +
-                   //$"-I\"{Path.Combine(sysrootPath, "usr", "local", "include")}\" " +
-                   //$"-I\"{Path.Combine(sysrootPath, "..", "lib64", "clang", "12.0.8", "include")}\" " +
-                   //$"-I\"{Path.Combine(sysrootPath, "usr", "include", "aarch64-linux-android")}\" " +
-                   //$"-I\"{Path.Combine(sysrootPath, "usr", "include")}\" " +
                    $"-L\"{sysrootPath}/usr/lib\" " +
-                   "-fuse-ld=lld " + // Use LLD linker
+                   $"-L\"C:\\dev\\KytheraUnityExample\\Packages\\ai.kythera.unity\\Runtime\\KytheraBindings\\Plugins\\android\\x64\" " +
+                   "-fuse-ld=lld " +        // Use LLD linker
+                   "-lKythera_Core " +
+                   "-lKythera_Navigation " +
                    "-shared " +
                    "-fPIC " +
                    "-no-canonical-prefixes " +
