@@ -3140,6 +3140,11 @@ internal static{(@new ? " new" : string.Empty)} {printedClass} __GetInstance({Ty
 
             var @internal = TypePrinter.PrintNative(
                 @class.IsAbstractImpl ? @class.BaseClass : @class);
+            
+            if (@class.KytIsSingleton)
+            {
+                WriteLine("singletonInstance = this;");
+            }
             WriteLine($"{Helpers.InstanceIdentifier} = Marshal.AllocHGlobal(sizeof({@internal}));");
             WriteLine($"{Helpers.OwnsNativeInstanceIdentifier} = true;");
 
